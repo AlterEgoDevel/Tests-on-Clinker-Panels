@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика | КОМПАНІЯ ППФ</title>
+    <style>
+
+    /* Запрет выделения текста на всех элементах */
+    * {
+        user-select: none; /* Для большинства браузеров */
+        -webkit-user-select: none; /* Для Safari */
+        -moz-user-select: none; /* Для Firefox */
+        -ms-user-select: none; /* Для Internet Explorer/Edge */
+    }
+
+    /* Общие стили */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: black;
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Фон для компьютеров */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('img/bg1 green.png') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(10px);
+        opacity: 0.95;
+        z-index: -1;
+    }
+
+    /* Фон для мобильных устройств и планшетов */
+    @media (max-width: 1024px) {
+        body::before {
+            background: url('img/bg1 green vertical.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+    }
+
+    /* Хедер */
+    .header-top {
+        background-color: #181b20;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        width: 64px;
+        height: 60px;
+    }
+
+    .logo-text {
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    .company-name {
+        font-size: 32px;
+        font-weight: 400;
+    }
+
+    .company-desc {
+        font-size: 18px;
+    }
+
+    .header-title {
+        font-size: 28px;
+        font-weight: 400;
+    }
+
+    /* Меню */
+    .header-bottom {
+        background-color: rgba(41, 45, 51, 0.95);
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Ссылки */
+    nav a {
+        color: #8f8f8f;
+        font-size: 18px;
+        font-weight: 400;
+        margin-right: 20px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: white;
+    }
+
+    nav a.active {
+        color: white;
+    }
+
+    /* Статистика */
+    #statistics-container {
+        max-width: 1220px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+    }
+
+    h2 {
+        font-size: 32px;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+
+    .stat-item {
+        margin-bottom: 20px;
+    }
+
+    .stat-item h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
+    .stat-item p {
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    /* Таблица деталей */
+    #question-details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #question-details-table th, #question-details-table td {
+        padding: 12px;
+        text-align: center;
+        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    #question-details-table th {
+        background-color: #444;
+    }
+
+    #question-details-table td {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #question-details-table th i, #question-details-table td i {
+        font-size: 24px;
+    }
+
+    /* Кнопки */
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        max-width: 90%;
+        margin: 20px auto;
+    }
+
+    button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 12px;
+        cursor: pointer;
+        min-width: 150px;
+        transition: all 0.3s ease-in-out;
+        color: white;
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+        box-shadow: 0px 6px 16px rgba(255, 255, 255, 0.3);
+    }
+
+    button:active {
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(0.95);
+    }
+
+    #question-details-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+#question-details-table th, #question-details-table td {
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Фон для заголовков */
+#question-details-table th {
+    background-color: #444;
+}
+
+/* Фон для ячеек */
+#question-details-table td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Уменьшаем шрифт в первой колонке, где находится вопрос */
+#question-details-table td:first-child {
+    font-size: 16px; /* Уменьшаем шрифт в первой колонке */
+    text-align: left; /* Выравнивание текста по левому краю */
+    padding-left: 20px; /* Добавляем отступ слева для лучшего отображения */
+}
+
+/* Закругление углов таблицы */
+#question-details-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+#question-details-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+#question-details-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+#question-details-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+
+        body::before {
+            background: url('img/bg1 green vertical.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .header-top {
+            flex-direction: column;
+            height: auto;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+
+        .company-name {
+            font-size: 24px;
+        }
+
+        .company-desc {
+            font-size: 16px;
+        }
+
+        .header-title {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            font-size: 16px;
+        }
+
+        #statistics-container {
+            width: 95%;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        .stat-item h3 {
+            font-size: 20px;
+        }
+
+        .stat-item p {
+            font-size: 18px;
+        }
+
+        .buttons {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        button {
+            min-width: 120px;
+            padding: 10px 20px;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Хедер -->
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="img/logo.png" alt="Логотип" class="logo">
+                <div class="logo-text">
+                    <div class="company-name">КОМПАНІЯ ППФ</div>
+                    <div class="company-desc">ПОКРІВЛЯ & ФАСАД</div>
+                </div>
+            </div>
+            <div class="header-title">Статистика</div>
+        </div>
+
+        <div class="header-bottom">
+            <nav>
+                <a href="index.html">Тест</a>
+                <a href="stats.html" class="active">Статистика</a>
+            </nav>
+            <button id="refresh">Оновити</button>
+        </div>
+    </header>
+
+    <!-- Статистика теста -->
+    <div id="statistics-container">
+        <h2>Ваші результати</h2>
+
+        <!-- Общие данные -->
+        <div class="stat-item">
+            <h3>Всього питань:</h3>
+            <p>12</p>
+        </div>
+
+        <div class="stat-item">
+            <h3>Правильних відповідей:</h3>
+            <p id="correct-answers">8</p>
+        </div>
+
+        <div class="stat-item">
+            <h3>Неправильних відповідей:</h3>
+            <p id="incorrect-answers">4</p>
+        </div>
+
+        <div class="stat-item">
+            <h3>Процент правильних відповідей:</h3>
+            <p id="correct-percent">66.7%</p>
+        </div>
+
+        <div class="stat-item">
+            <h3>Час на тест:</h3>
+            <p id="time-spent">12 хвилин</p>
+        </div>
+
+        <!-- Таблица деталей по каждому вопросу -->
+        <h3>Деталі по кожному питанню:</h3>
+        <table id="question-details-table">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-question-circle"></i></th> <!-- Заголовок для вопроса -->
+                    <th><i class="fas fa-check-circle"></i></th> <!-- Правильные ответы -->
+                    <th><i class="fas fa-times-circle"></i></th> <!-- Неправильные ответы -->
+                    <th><i class="fas fa-percent"></i></th> <!-- Процент правильных ответов -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Питання 2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>Питання 2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>Питання 3</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0%</td>
+                </tr>
+                <!-- Добавьте остальные вопросы -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Кнопка перехода на главную -->
+    <div class="buttons">
+        <button onclick="window.location.href = 'index.html';">Почати новий тест</button>
+    </div>
+
+    <!-- Подключение иконок FontAwesome для иконок -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
