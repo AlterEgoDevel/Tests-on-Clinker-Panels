@@ -279,20 +279,148 @@ button:active {
 
 
 
+/* Лента прогресса */
 .progress-bar {
     display: flex;
     justify-content: space-between;
     max-width: 80%;
     margin: 20px auto;
-    padding: 10px 0;  /* Добавлено отступы */
+    padding: 10px 0;
+    width: 100%;
 }
 
+/* Элементы прогресс-бара */
 .progress-item {
     width: 8%;
     height: 10px;
-    background-color: #444;
+    background-color: #444; /* Серый для невыбранных */
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, height 0.3s ease; /* Изменяем transition для height */
+    margin-right: 5px;
+}
+
+/* Когда элемент активен */
+.progress-item.active {
+    background-color: #FFC107; /* Оранжевый для активного */
+    height: 15px; /* Увеличиваем только высоту активного отрезка */
+}
+
+/* Когда пользователь выбрал правильный ответ */
+.progress-item.correct {
+    background-color: #4CAF50; /* Зеленый */
+    height: 10px; /* Стандартная высота */
+}
+
+/* Когда пользователь выбрал неправильный ответ */
+.progress-item.incorrect {
+    background-color: #F44336; /* Красный */
+    height: 10px; /* Стандартная высота */
+}
+
+/* Когда вопрос еще не выбран */
+.progress-item.unanswered {
+    background-color: #444; /* Серый */
+    height: 10px; /* Стандартная высота */
+}
+
+/* Убираем стандартный стиль радиокнопки */
+input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* Окрашивание радиокнопки в ЗЕЛЕНЫЙ (правильный ответ) */
+input.correct::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Окрашивание радиокнопки в КРАСНЫЙ (неправильный ответ) */
+input.incorrect::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.correct {
+    accent-color: green;
+}
+.incorrect {
+    accent-color: red;
+}
+
+
+/* Текст разъяснения */
+#explanation-text {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 60px;
+    color: white; /* Белый цвет текста */
+}
+
+/* Контейнер с разъяснением */
+#explanation-container {
+    max-width: 90%;
+    width: 1220px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 20px 20px;
+    border-radius: 30px;
+    margin: 40px auto;
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    color: white;
+    display: none; /* Скрыт по умолчанию */
+}
+
+/* Адаптация для маленьких экранов */
+@media screen and (max-width: 768px) {
+    #explanation-container {
+        width: 90%;
+        padding: 10px 15px;
+        border-radius: 20px;
+    }
+    #explanation-text {
+        font-size: 20px; /* Уменьшаем шрифт для мобильных */
+        margin-left: 40px;
+    }
+}
+
+/* Адаптация для очень маленьких экранов (например, мобильные телефоны) */
+@media screen and (max-width: 480px) {
+    #explanation-container {
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 15px;
+        margin: 20px auto;
+    }
+    #explanation-text {
+        font-size: 18px; /* Уменьшаем шрифт для мобильных */
+        margin-left: 20px;
+    }
 }
 
 
@@ -374,14 +502,14 @@ button:active {
         <button id="next">Наступне</button>
     </div>
 
-
-
-
-
+    <div id="explanation-container" style="display: none;">
+        <p id="explanation-text"></p>
+    </div>
     
-    <script>
-// Массив вопросов
-const questions = [
+    
+   <script>
+        // Массив вопросов
+        const questions = [
     {
         text: "Що таке \"точка роси\"?",
         answers: [
@@ -389,7 +517,8 @@ const questions = [
             { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
             { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
             { text: "Температура, при якій вода перестає випаровуватися", correct: false }
-        ]
+        ],
+        explanation: "Правильний відповідь: карася сын."
     },
     {
         text: "Який із наведених матеріалів є екструдованим утеплювачем?",
@@ -398,54 +527,104 @@ const questions = [
             { text: "Білий пінопласт", correct: false },
             { text: "Спінений графітовий пінопласт", correct: false },
             { text: "Екструдований пінополістирол (XPS)", correct: true }
-        ]
+        ],
+        explanation: "Правильний відповідь: Соси ласин."
     },
     {
-        text: "Яка основна функція утеплювача у фасадних системах?",
+        text: "Що таке \"точка роси\"?",
         answers: [
-            { text: "Збільшення ваги конструкції", correct: false },
-            { text: "Покращення зовнішнього вигляду", correct: false },
-            { text: "Зменшення тепловтрат", correct: true },
-            { text: "Захист від дощу", correct: false }
-        ]
+            { text: "Температура, при якій починає замерзати вода", correct: false },
+            { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
+            { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
+            { text: "Температура, при якій вода перестає випаровуватися", correct: false }
+        ],
+        explanation: "Правильний відповідь: карася сын."
     },
     {
-        text: "Який матеріал використовується для клінкерних панелей?",
+        text: "Який із наведених матеріалів є екструдованим утеплювачем?",
         answers: [
-            { text: "Гіпс", correct: false },
-            { text: "Клінкерна кераміка", correct: true },
-            { text: "Пластик", correct: false },
-            { text: "Бетон", correct: false }
-        ]
+            { text: "Мінеральна вата", correct: false },
+            { text: "Білий пінопласт", correct: false },
+            { text: "Спінений графітовий пінопласт", correct: false },
+            { text: "Екструдований пінополістирол (XPS)", correct: true }
+        ],
+        explanation: "Правильний відповідь: Соси ласин."
+    },
+    {
+        text: "Що таке \"точка роси\"?",
+        answers: [
+            { text: "Температура, при якій починає замерзати вода", correct: false },
+            { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
+            { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
+            { text: "Температура, при якій вода перестає випаровуватися", correct: false }
+        ],
+        explanation: "Правильний відповідь: карася сын."
+    },
+    {
+        text: "Який із наведених матеріалів є екструдованим утеплювачем?",
+        answers: [
+            { text: "Мінеральна вата", correct: false },
+            { text: "Білий пінопласт", correct: false },
+            { text: "Спінений графітовий пінопласт", correct: false },
+            { text: "Екструдований пінополістирол (XPS)", correct: true }
+        ],
+        explanation: "Правильний відповідь: Соси ласин."
+    },
+    {
+        text: "Що таке \"точка роси\"?",
+        answers: [
+            { text: "Температура, при якій починає замерзати вода", correct: false },
+            { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
+            { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
+            { text: "Температура, при якій вода перестає випаровуватися", correct: false }
+        ],
+        explanation: "Правильний відповідь: карася сын."
+    },
+    {
+        text: "Який із наведених матеріалів є екструдованим утеплювачем?",
+        answers: [
+            { text: "Мінеральна вата", correct: false },
+            { text: "Білий пінопласт", correct: false },
+            { text: "Спінений графітовий пінопласт", correct: false },
+            { text: "Екструдований пінополістирол (XPS)", correct: true }
+        ],
+        explanation: "Правильний відповідь: Соси ласин."
     }
+    // Добавьте дополнительные вопросы с разъяснениями
 ];
 
-let currentQuestionIndex = 0; // Текущий вопрос
-let userAnswers = new Array(questions.length).fill(null); // Ответы пользователя
-
-const questionText = document.getElementById("question-text");
-const answersContainer = document.querySelector(".answers");
-const progressItems = document.querySelectorAll(".progress-item");
-
-// Функция для перемешивания массива
-function shuffleArray(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
-
-// Функция загрузки вопроса
-function loadQuestion() {
+    
+        // Перемешиваем ответы
+        questions.forEach(question => {
+            question.shuffledAnswers = shuffleArray([...question.answers]);
+        });
+    
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+    
+        const questionText = document.getElementById("question-text");
+        const answersContainer = document.querySelector(".answers");
+        const progressItems = document.querySelectorAll(".progress-item");
+    
+        // Функция перемешивания массива
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+    
+        function loadQuestion() {
     let question = questions[currentQuestionIndex];
+    if (!question) return;
 
-    if (!question) return; // Защита от ошибок, если вопрос не найден
+    // Скрыть контейнер с разъяснением перед загрузкой нового вопроса
+    const explanationContainer = document.getElementById("explanation-container");
+    explanationContainer.style.display = "none"; // Скрываем блок с объяснением
 
-    // Отображаем текст вопроса
+    // Обновляем текст вопроса
     questionText.textContent = `${currentQuestionIndex + 1}. ${question.text}`;
-
-    // Очищаем контейнер с ответами
-    answersContainer.innerHTML = "";
+    answersContainer.innerHTML = ""; // Очищаем контейнер с ответами
 
     // Перемешиваем ответы
-    let shuffledCurrentAnswers = shuffleArray(question.answers);
+    let shuffledCurrentAnswers = question.shuffledAnswers;
 
     shuffledCurrentAnswers.forEach((answer, index) => {
         const label = document.createElement("label");
@@ -453,121 +632,167 @@ function loadQuestion() {
 
         const input = document.createElement("input");
         input.type = "radio";
-        input.name = `answer-${currentQuestionIndex}`; // Уникальное имя для каждой группы
-        input.value = index; // Используется новый индекс
+        input.name = `answer-${currentQuestionIndex}`; // Уникальное имя для каждого вопроса
+        input.value = index;
+        input.dataset.correct = answer.correct; // Сохраняем правильность ответа
 
-        input.disabled = userAnswers[currentQuestionIndex] !== null; // Запрещаем изменение ответа после выбора
-
+        // Если пользователь уже выбрал этот ответ, восстанавливаем его состояние
         if (userAnswers[currentQuestionIndex] === index) {
             input.checked = true;
+            input.disabled = true; // Блокируем радиокнопку
         }
 
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(answer.text));
-
-        // Обработчик для блокировки радиокнопок после выбора
         input.addEventListener("change", () => {
             if (userAnswers[currentQuestionIndex] === null) {
                 userAnswers[currentQuestionIndex] = index;
-                updateProgress();
+                applyAnswerStyles(currentQuestionIndex); // Применяем стили после выбора
+                updateProgress(); // Обновляем прогресс
 
-                // Блокируем все радиокнопки после выбора ответа
-                const allRadioButtons = answersContainer.querySelectorAll('input[type="radio"]');
-                allRadioButtons.forEach(button => {
-                    button.disabled = true; // Блокируем все радиокнопки
+                // Блокируем радиокнопки для текущего вопроса
+                const answerInputs = document.querySelectorAll(`input[name="answer-${currentQuestionIndex}"]`);
+                answerInputs.forEach(input => {
+                    input.disabled = true; // Блокируем радиокнопки
                 });
             }
         });
 
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(answer.text));
+
         answersContainer.appendChild(label);
     });
 
-    updateProgress();
+    // Применяем стили к ответам после загрузки вопроса
+    applyAnswerStyles(currentQuestionIndex);
+
+    // Блокируем радиокнопки для всех предыдущих вопросов
+    disablePreviousQuestions();
+
+    updateProgress(); // Обновляем прогресс при загрузке нового вопроса
 }
 
-// Функция обновления прогресса
+    
+        // Функция для блокировки радиокнопок на всех предыдущих вопросах
+        function disablePreviousQuestions() {
+            questions.forEach((question, index) => {
+                if (userAnswers[index] !== null) {
+                    const answerInputs = document.querySelectorAll(`input[name="answer-${index}"]`);
+                    answerInputs.forEach(input => {
+                        input.disabled = true; // Блокируем радиокнопки, если ответ уже выбран
+                    });
+                }
+            });
+        }
+    
+// Функция для изменения стилей радиокнопок (правильный/неправильный)
+function applyAnswerStyles(questionIndex) {
+    const question = questions[questionIndex];
+    const correctIndex = question.shuffledAnswers.findIndex(answer => answer.correct); // Индекс правильного ответа
+    const answerInputs = document.querySelectorAll(`input[name="answer-${questionIndex}"]`);
+    const explanationContainer = document.getElementById("explanation-container");
+    const explanationText = document.getElementById("explanation-text");
+
+    answerInputs.forEach((input, index) => {
+        input.classList.remove("correct", "incorrect"); // Убираем старые стили
+
+        // Применяем стили только если был выбран ответ
+        if (userAnswers[questionIndex] !== null) {
+            const isCorrect = input.dataset.correct === "true"; // Правильный ли ответ
+            if (input.checked) {
+                input.classList.add(isCorrect ? "correct" : "incorrect"); // Применяем стили
+
+                // Добавляем текст объяснения для текущего вопроса
+                if (isCorrect) {
+                    explanationText.textContent = question.explanation; // Показать разъяснение для правильного ответа
+                } else {
+                    explanationText.textContent = "Неправильна відповідь. " + question.explanation;
+                }
+
+                explanationContainer.style.display = "block"; // Показываем контейнер с объяснением
+            }
+        }
+    });
+}
+
+
+
+    
+// Функция для обновления прогресса
 function updateProgress() {
     progressItems.forEach((item, index) => {
-        const isAnswered = userAnswers[index] !== null; // Проверка, отвечал ли на вопрос
-        const isCorrect = isAnswered && questions[index]?.answers[userAnswers[index]]?.correct; // Проверка правильности ответа
+        const isAnswered = userAnswers[index] !== null; // Проверяем, был ли выбран ответ
+        const isCorrect = isAnswered && questions[index]?.shuffledAnswers[userAnswers[index]]?.correct; // Проверяем, правильный ли ответ
 
-        if (index < currentQuestionIndex) {
-            // Если вопрос уже был пройден
+        // Убираем все классы (active, correct, incorrect)
+        item.classList.remove("active", "correct", "incorrect");
+        item.style.height = '10px'; // Сбрасываем высоту для всех элементов
+
+        // Если ответ был дан
+        if (index === currentQuestionIndex) {
+            item.classList.add("active"); // Добавляем класс для активного ответа
+            item.style.height = '15px'; // Увеличиваем высоту активного элемента
+        }
+
+        // Обрабатываем правильность/неправильность ответа
+        if (isAnswered) {
             if (isCorrect) {
-                item.style.backgroundColor = "#4CAF50"; // Зеленый, если ответ правильный
+                item.classList.add("correct"); // Если ответ правильный, добавляем класс для правильного ответа
             } else {
-                item.style.backgroundColor = "#F44336"; // Красный, если ответ неправильный
+                item.classList.add("incorrect"); // Если ответ неправильный, добавляем класс для неправильного ответа
             }
-        } else if (index === currentQuestionIndex) {
-            // Текущий вопрос
-            item.style.backgroundColor = "#FFC107"; // Желтый для текущего
-        } else {
-            // Вопросы, на которые еще не отвечено
-            item.style.backgroundColor = "#444"; // Серый
         }
     });
 }
 
-// Обработчик для кнопки "Назад"
-document.getElementById("prev").addEventListener("click", () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-    }
-});
 
-// Обработчик для кнопки "Далее"
-document.getElementById("next").addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
+    
+        // Инициализация начального вопроса
         loadQuestion();
-    } else {
-        checkAnswers();
-    }
-});
-
-// Функция проверки ответов
-function checkAnswers() {
-    let score = 0;
-    questions.forEach((q, i) => {
-        const correctAnswerIndex = q.answers.findIndex(answer => answer.correct);
-        if (userAnswers[i] === correctAnswerIndex) {
-            score++;
+    
+        // Обработчики кнопок "Следующий" и "Предыдущий"
+        document.getElementById("prev").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        });
+    
+        // Обработчик кнопки "Далее"
+        document.getElementById("next").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                checkAnswers();
+            }
+        });
+    
+        // Функция проверки ответов
+        function checkAnswers() {
+            let score = 0;
+            questions.forEach((q, i) => {
+                const correctAnswerIndex = q.shuffledAnswers.findIndex(answer => answer.correct);
+                if (userAnswers[i] === correctAnswerIndex) {
+                    score++;
+                }
+            });
+    
+            alert(`Ви набрали ${score} з ${questions.length} балів!`);
         }
-    });
-
-    alert(`Ви набрали ${score} з ${questions.length} балів!`);
-}
-
-// Обработчик для кнопки "Обновить"
-document.getElementById("refresh").addEventListener("click", () => {
-    // Перемешиваем вопросы и их ответы
-    questions.forEach(question => {
-        question.answers = shuffleArray([...question.answers]); // Перемешиваем ответы для каждого вопроса
-    });
-
-    userAnswers.fill(null); // Очищаем ответы пользователя
-    currentQuestionIndex = 0; // Сброс текущего вопроса
-    loadQuestion(); // Загружаем первый вопрос
-});
-
-loadQuestion(); // Изначальная загрузка первого вопроса
-
+    
+        // Обработчик кнопки "Обновить"
+        document.getElementById("refresh").addEventListener("click", () => {
+            questions.forEach(question => {
+                question.shuffledAnswers = shuffleArray([...question.answers]);
+            });
+    
+            userAnswers.fill(null);
+            currentQuestionIndex = 0;
+            loadQuestion();
+        });
+    
+        loadQuestion(); // Первая загрузка вопроса
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 </body>
 </html>
