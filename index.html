@@ -362,8 +362,10 @@
         
             #question-text {
                 font-size: 18px;
-                text-align: left;
+                text-align: center;
                 margin-left: 0;
+                margin-top: 6px;
+                margin-bottom: 6px;
             }
         
             .answer {
@@ -375,7 +377,7 @@
             .answers {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 8px;
+                gap: 0;
             }
         
             /* Лента прогресса */
@@ -403,13 +405,6 @@
             }
         }
 
-        /* 1. Выровнять текст вопроса по центру на мобильных */
-@media screen and (max-width: 768px) {
-    #question-text {
-        text-align: center;
-        margin-left: 0;
-    }
-}
 
 /* 2. Сделать ширину контейнера разъяснения такой же, как у контейнера вопроса */
 @media screen and (max-width: 768px) {
