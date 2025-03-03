@@ -526,9 +526,9 @@
     </div>
     
     
-   <script>
-        // Массив вопросов
-        const questions = [
+    <script>
+// Массив вопросов
+const questions = [
     {
         text: "Що таке \"точка роси\"?",
         answers: [
@@ -560,78 +560,176 @@
     explanation: "Адгезія — це здатність матеріалу прилипати або зчіплюватися з іншою поверхнею. На адгезію впливають кілька факторів: температура і вологість повітря, чистота і структура поверхні, а також тип і якість клею. Тому правильна відповідь — Усі перелічені фактори."
     },
     {
-    text: "Яка основна функція утеплювача у фасадних панелях?",
-    answers: [
-        { text: "Декоративна", correct: false },
-        { text: "Теплоізоляційна", correct: true },
-        { text: "Звукоізоляційна", correct: false },
-        { text: "Захист від вологи", correct: false }
-    ],
-    explanation: "Основна функція утеплювача у фасадних панелях — це теплоізоляційна функція. Утеплювачі забезпечують збереження тепла в будівлі, знижуючи тепловтрати через стіни та фасад. Це дозволяє зменшити витрати на опалення і підтримувати комфортну температуру всередині приміщення. Тому правильна відповідь — Теплоізоляційна."
-    },
-    {
-        text: "Що таке \"точка роси\"?",
+        text: "Які з наведених матеріалів є різновидами клінкерної плитки?",
         answers: [
-            { text: "Температура, при якій починає замерзати вода", correct: false },
-            { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
-            { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
-            { text: "Температура, при якій вода перестає випаровуватися", correct: false }
+            { text: "Paradyz", correct: false },
+            { text: "Cerrad", correct: false },
+            { text: "King Klinker", correct: false },
+            { text: "Всі перелічені", correct: true }
         ],
-        explanation: "Правильний відповідь: карася сын."
+        explanation: "Клінкерна плитка виготовляється за допомогою спеціальної технології, і всі перелічені бренди — це різновиди клінкерної плитки, яка відома своєю високою міцністю і довговічністю. Тому правильна відповідь — Всі перелічені."
     },
     {
-        text: "Який із наведених матеріалів є екструдованим утеплювачем?",
+        text: "Який утеплювач найкраще підходить для фасадних панелей завдяки низькому водопоглинанню?",
         answers: [
             { text: "Мінеральна вата", correct: false },
             { text: "Білий пінопласт", correct: false },
-            { text: "Спінений графітовий пінопласт", correct: false },
-            { text: "Екструдований пінополістирол (XPS)", correct: true }
+            { text: "Екструдований пінополістирол", correct: true },
+            { text: "Деревне волокно", correct: false }
         ],
-        explanation: "Правильний відповідь: Соси ласин."
+        explanation: "Екструдований пінополістирол (XPS) має низьке водопоглинання, що робить його ідеальним для використання в фасадних панелях, де важливо уникати впливу вологи. Тому правильна відповідь — Екструдований пінополістирол."
     },
     {
-        text: "Що таке \"точка роси\"?",
+        text: "Чим відрізняється графітовий пінополістирол від білого?",
         answers: [
-            { text: "Температура, при якій починає замерзати вода", correct: false },
-            { text: "Температура, при якій водяна пара конденсується у рідину", correct: true },
-            { text: "Температура, при якій повітря стає абсолютно сухим", correct: false },
-            { text: "Температура, при якій вода перестає випаровуватися", correct: false }
+            { text: "Менша щільність", correct: false },
+            { text: "Вища теплопровідність", correct: false },
+            { text: "Кращі теплоізоляційні властивості", correct: true },
+            { text: "Гірша адгезія", correct: false }
         ],
-        explanation: "Правильний відповідь: карася сын."
+        explanation: "Графітовий пінополістирол має кращі теплоізоляційні властивості завдяки додаванню графітових часток, які знижують теплопровідність матеріалу. Тому правильна відповідь — Кращі теплоізоляційні властивості."
     },
     {
-        text: "Який із наведених матеріалів є екструдованим утеплювачем?",
+        text: "Яка максимальна товщина утеплювача у фасадних панелях?",
+        answers: [
+            { text: "50 мм", correct: false },
+            { text: "100 мм", correct: false },
+            { text: "120 мм", correct: false },
+            { text: "150 мм", correct: true }
+        ],
+        explanation: "Максимальна товщина утеплювача у фасадних панелях зазвичай не перевищує 150 мм для забезпечення оптимальних теплоізоляційних властивостей і легкості монтажу. Тому правильна відповідь — 150 мм."
+    },
+    {
+        text: "Що таке коефіцієнт теплопровідності?",
+        answers: [
+            { text: "Швидкість нагріву матеріалу", correct: false },
+            { text: "Величина, що показує, як добре матеріал проводить тепло", correct: true },
+            { text: "Величина, що характеризує паропроникність", correct: false },
+            { text: "Показник морозостійкості матеріалу", correct: false }
+        ],
+        explanation: "Коефіцієнт теплопровідності — це величина, що показує, як добре матеріал проводить тепло. Чим менший цей коефіцієнт, тим кращі теплоізоляційні властивості матеріалу. Тому правильна відповідь — Величина, що показує, як добре матеріал проводить тепло."
+    },
+    {
+        text: "Який матеріал має найнижчу паропроникність?",
         answers: [
             { text: "Мінеральна вата", correct: false },
             { text: "Білий пінопласт", correct: false },
-            { text: "Спінений графітовий пінопласт", correct: false },
-            { text: "Екструдований пінополістирол (XPS)", correct: true }
+            { text: "Графітовий пінополістирол", correct: false },
+            { text: "Екструдований пінополістирол", correct: true }
         ],
-        explanation: "Правильний відповідь: Соси ласин."
+        explanation: "Екструдований пінополістирол має найнижчу паропроникність серед зазначених матеріалів, що робить його відмінним вибором для фасадних панелей, де важлива герметичність і захист від вологи. Тому правильна відповідь — Екструдований пінополістирол."
+    },
+    {
+        text: "Який матеріал використовується для кріплення термопанелей до стіни?",
+        answers: [
+            { text: "Цементний розчин", correct: false },
+            { text: "Дюбелі та клей", correct: true },
+            { text: "Саморізи", correct: false },
+            { text: "Монтажна піна", correct: false }
+        ],
+        explanation: "Для кріплення термопанелей до стіни використовують комбінацію дюбелів та клею, що забезпечує надійне з'єднання панелей з поверхнею. Тому правильна відповідь — Дюбелі та клей."
+    },
+    {
+        text: "Яка оптимальна температура для проведення монтажу термопанелей?",
+        answers: [
+            { text: "-5°C", correct: false },
+            { text: "0°C", correct: false },
+            { text: "+5°C", correct: true },
+            { text: "+10°C", correct: false }
+        ],
+        explanation: "Оптимальна температура для монтажу термопанелей складає близько +5°C, щоб забезпечити хорошу адгезію клею і стабільність матеріалів. Тому правильна відповідь — +5°C."
+    },
+    {
+        text: "Скільки закладних елементів використовується для монтажу однієї панелі?",
+        answers: [
+            { text: "3", correct: false },
+            { text: "5", correct: true },
+            { text: "7", correct: false },
+            { text: "10", correct: false }
+        ],
+        explanation: "Зазвичай для монтажу однієї термопанелі використовують 5 закладних елементів, що дозволяє забезпечити надійне кріплення. Тому правильна відповідь — 5."
+    },
+    {
+        text: "Як правильно готувати основу перед монтажем панелей?",
+        answers: [
+            { text: "Очистити від пилу та забруднень", correct: false },
+            { text: "Нанести ґрунтовку", correct: false },
+            { text: "Вирівняти поверхню", correct: false },
+            { text: "Усі перелічені дії", correct: true }
+        ],
+        explanation: "Перед монтажем панелей потрібно очистити поверхню від пилу та забруднень, вирівняти її і нанести ґрунтовку, щоб забезпечити хорошу адгезію та стабільність. Тому правильна відповідь — Усі перелічені дії."
+    },
+    {
+        text: "Який інструмент використовується для нарізки термопанелей?",
+        answers: [
+            { text: "Болгарка", correct: true },
+            { text: "Канцелярський ніж", correct: false },
+            { text: "Пила по металу", correct: false },
+            { text: "Ручний рубанок", correct: false }
+        ],
+        explanation: "Для нарізки термопанелей зазвичай використовують болгарку, оскільки вона дозволяє здійснювати точні та швидкі розрізи матеріалу. Тому правильна відповідь — Болгарка."
+    },
+    {
+        text: "Чим слід обробляти стики між панелями для герметизації?",
+        answers: [
+            { text: "Монтажною піною", correct: true },
+            { text: "Силіконовим герметиком", correct: false },
+            { text: "Клеєм для плитки", correct: false },
+            { text: "Нічим", correct: false }
+        ],
+        explanation: "Для герметизації стиків між панелями найкраще використовувати монтажну піну, яка забезпечить хорошу ізоляцію і міцне з'єднання. Тому правильна відповідь — Монтажною піною."
+    },
+    {
+        text: "Як визначити правильне розташування першої панелі?",
+        answers: [
+            { text: "Використати рівень", correct: true },
+            { text: "Візуально оцінити", correct: false },
+            { text: "Орієнтуватися на сусідні панелі", correct: false },
+            { text: "Встановити 'на око'", correct: false }
+        ],
+        explanation: "Правильне розташування першої панелі визначається за допомогою рівня, щоб забезпечити правильне вирівнювання і точність монтажу всіх наступних панелей. Тому правильна відповідь — Використати рівень."
+    },
+    {
+        text: "Чим кріпляться панелі до утеплювача?",
+        answers: [
+            { text: "Саморізами", correct: false },
+            { text: "Клейовим розчином", correct: false },
+            { text: "Дюбелями", correct: true },
+            { text: "Будівельними скобами", correct: false }
+        ],
+        explanation: "Панелі кріпляться до утеплювача за допомогою дюбелів, що забезпечує надійне і стійке з'єднання. Тому правильна відповідь — Дюбелями."
     }
-    // Добавьте дополнительные вопросы с разъяснениями
 ];
 
-    
-        // Перемешиваем ответы
-        questions.forEach(question => {
-            question.shuffledAnswers = shuffleArray([...question.answers]);
-        });
-    
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(questions.length).fill(null);
-    
-        const questionText = document.getElementById("question-text");
-        const answersContainer = document.querySelector(".answers");
-        const progressItems = document.querySelectorAll(".progress-item");
-    
-        // Функция перемешивания массива
-        function shuffleArray(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
-    
-        function loadQuestion() {
-    let question = questions[currentQuestionIndex];
+// Функция для случайного выбора 12 вопросов
+function getRandomQuestions() {
+    const shuffledQuestions = shuffleArray([...questions]);
+    return shuffledQuestions.slice(0, 12); // Возвращаем только первые 12 вопросов
+}
+
+// Перемешиваем ответы
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+let currentQuestionIndex = 0;
+let userAnswers = new Array(12).fill(null); // Обновляем размер массива под 12 вопросов
+
+// Получаем случайные 12 вопросов
+const selectedQuestions = getRandomQuestions();
+
+// Перемешиваем ответы для всех вопросов
+selectedQuestions.forEach(question => {
+    question.shuffledAnswers = shuffleArray([...question.answers]);
+});
+
+const questionText = document.getElementById("question-text");
+const answersContainer = document.querySelector(".answers");
+const progressItems = document.querySelectorAll(".progress-item");
+
+// Загрузка вопроса
+function loadQuestion() {
+    let question = selectedQuestions[currentQuestionIndex];
     if (!question) return;
 
     // Скрыть контейнер с разъяснением перед загрузкой нового вопроса
@@ -690,22 +788,21 @@
     updateProgress(); // Обновляем прогресс при загрузке нового вопроса
 }
 
-    
-        // Функция для блокировки радиокнопок на всех предыдущих вопросах
-        function disablePreviousQuestions() {
-            questions.forEach((question, index) => {
-                if (userAnswers[index] !== null) {
-                    const answerInputs = document.querySelectorAll(`input[name="answer-${index}"]`);
-                    answerInputs.forEach(input => {
-                        input.disabled = true; // Блокируем радиокнопки, если ответ уже выбран
-                    });
-                }
+// Функция для блокировки радиокнопок на всех предыдущих вопросах
+function disablePreviousQuestions() {
+    selectedQuestions.forEach((question, index) => {
+        if (userAnswers[index] !== null) {
+            const answerInputs = document.querySelectorAll(`input[name="answer-${index}"]`);
+            answerInputs.forEach(input => {
+                input.disabled = true; // Блокируем радиокнопки, если ответ уже выбран
             });
         }
-    
+    });
+}
+
 // Функция для изменения стилей радиокнопок (правильный/неправильный)
 function applyAnswerStyles(questionIndex) {
-    const question = questions[questionIndex];
+    const question = selectedQuestions[questionIndex];
     const correctIndex = question.shuffledAnswers.findIndex(answer => answer.correct); // Индекс правильного ответа
     const answerInputs = document.querySelectorAll(`input[name="answer-${questionIndex}"]`);
     const explanationContainer = document.getElementById("explanation-container");
@@ -733,14 +830,11 @@ function applyAnswerStyles(questionIndex) {
     });
 }
 
-
-
-    
 // Функция для обновления прогресса
 function updateProgress() {
     progressItems.forEach((item, index) => {
         const isAnswered = userAnswers[index] !== null; // Проверяем, был ли выбран ответ
-        const isCorrect = isAnswered && questions[index]?.shuffledAnswers[userAnswers[index]]?.correct; // Проверяем, правильный ли ответ
+        const isCorrect = isAnswered && selectedQuestions[index]?.shuffledAnswers[userAnswers[index]]?.correct; // Проверяем, правильный ли ответ
 
         // Убираем все классы (active, correct, incorrect)
         item.classList.remove("active", "correct", "incorrect");
@@ -763,55 +857,59 @@ function updateProgress() {
     });
 }
 
+// Инициализация начального вопроса
+loadQuestion();
 
-    
-        // Инициализация начального вопроса
+// Обработчики кнопок "Предыдущий" и "Далее"
+document.getElementById("prev").addEventListener("click", () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
         loadQuestion();
-    
-        // Обработчики кнопок "Следующий" и "Предыдущий"
-        document.getElementById("prev").addEventListener("click", () => {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
-            }
-        });
-    
-        // Обработчик кнопки "Далее"
-        document.getElementById("next").addEventListener("click", () => {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion();
-            } else {
-                checkAnswers();
-            }
-        });
-    
-        // Функция проверки ответов
-        function checkAnswers() {
-            let score = 0;
-            questions.forEach((q, i) => {
-                const correctAnswerIndex = q.shuffledAnswers.findIndex(answer => answer.correct);
-                if (userAnswers[i] === correctAnswerIndex) {
-                    score++;
-                }
-            });
-    
-            alert(`Ви набрали ${score} з ${questions.length} балів!`);
+    }
+});
+
+document.getElementById("next").addEventListener("click", () => {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion();
+    } else {
+        checkAnswers();
+    }
+});
+
+// Функция проверки ответов
+function checkAnswers() {
+    let score = 0;
+    selectedQuestions.forEach((q, i) => {
+        const correctAnswerIndex = q.shuffledAnswers.findIndex(answer => answer.correct);
+        if (userAnswers[i] === correctAnswerIndex) {
+            score++;
         }
+    });
+
+    alert(`Ви набрали ${score} з ${selectedQuestions.length} балів!`);
+}
+
+// Обработчик кнопки "Обновить"
+document.getElementById("refresh").addEventListener("click", () => {
+    // Перезагружаем случайные 12 вопросов
+    const newQuestions = getRandomQuestions();
+    selectedQuestions.length = 0; // Очистка старого массива
+    selectedQuestions.push(...newQuestions);
     
-        // Обработчик кнопки "Обновить"
-        document.getElementById("refresh").addEventListener("click", () => {
-            questions.forEach(question => {
-                question.shuffledAnswers = shuffleArray([...question.answers]);
-            });
-    
-            userAnswers.fill(null);
-            currentQuestionIndex = 0;
-            loadQuestion();
-        });
-    
-        loadQuestion(); // Первая загрузка вопроса
+    // Перемешиваем ответы для всех новых вопросов
+    selectedQuestions.forEach(question => {
+        question.shuffledAnswers = shuffleArray([...question.answers]);
+    });
+
+    currentQuestionIndex = 0;
+    userAnswers = new Array(12).fill(null); // Сброс ответов
+    loadQuestion(); // Загружаем первый вопрос
+});
+
     </script>
+    
+    
     
 </body>
 </html>
