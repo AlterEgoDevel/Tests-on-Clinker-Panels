@@ -487,11 +487,11 @@ th {
     border-radius: 10px;
 }
 td.correct {
-    background: rgba(144, 238, 144, 0.7);
+    background: rgba(144, 238, 144, 0.315);
     border-radius: 10px;
 }
 td.incorrect {
-    background: rgba(255, 99, 71, 0.7);
+    background: rgba(255, 99, 71, 0.37);
     border-radius: 10px;
 }
 td.percent {
