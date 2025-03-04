@@ -1,8 +1,14 @@
 // Код для работы с Telegram Web App
-window.Telegram.WebApp.ready(); // Убедись, что WebApp готово
+window.Telegram.WebApp.ready(); // Убедитесь, что WebApp готово
 
 // Разворачиваем приложение на весь экран
 Telegram.WebApp.expand();
+
+// Устанавливаем цвет фона
+Telegram.WebApp.setBackgroundColor('#FFFFFF'); // Устанавливает белый фон для приложения
+
+// Попробуем вручную адаптировать размер
+Telegram.WebApp.adjust();
 
 // Получение данных о пользователе
 const user = Telegram.WebApp.initDataUnsafe;
